@@ -1,13 +1,24 @@
 package com.springboot.hello.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("api/v1/get-api")
 public class HelloController {
-    @RequestMapping(name = "/hello", method = RequestMethod.GET)
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String hello(){
         return "Hello World";
+    }
+    @GetMapping(value = "/name")
+    public String getName(){
+        return "Hoon";
+    }
+    @GetMapping(value = "/variable1/{variable}")
+    public String getVariable1(@PathVariable String variable){
+        return variable;
+    }
+    @GetMapping(value = "/variable2/{variable}")
+    public String getVariable2(@PathVariable("variable") String var){
+        return var;
     }
 }
